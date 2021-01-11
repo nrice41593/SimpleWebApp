@@ -1,0 +1,18 @@
+﻿@model WebApplication1.Models.UserModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>User Page</h2>
+
+
+@using (Html.BeginForm("Index", "User", "POST")) 
+{
+    
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
