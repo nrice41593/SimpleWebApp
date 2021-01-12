@@ -29,21 +29,49 @@
             <td><input id="RegisterDate" type="datetime" name="RegisterDate" required /></td>
         </tr>
         <tr>
-            <td><input type="submit" value="Submit"/> <input id="ajaxSubmit" type="button" value="Ajax Submit" /></td>
+            <td><input type="submit" value="Submit"/><input id="ajaxSubmit" type="button" value="Ajax Submit" /></td>
         </tr>
     </table>
 }
+<br />
+<h4>Users</h4>
+<table class="table table-bordered">
+    <tr>
+        <th>ID </th>
+        <th>First Name </th>
+        <th>Last Name </th>
+        <th>Age </th>
+        <th>Registered Since</th>
+    </tr>
+    <tr>
+        <td>@Model.ID</td>
+        <td>@Model.FirstName</td>
+        <td>@Model.LastName</td>
+        <td>@Model.Age</td>
+        <td>@Model.RegisterDate</td>
+    </tr>
+</table>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
-        $("#ajaxSubmit").submit(function (e) {
-            var valdata = $("#userForm").serialize();
-            alert(valdata);
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+
+    $(function () {
+        $("#ajaxSubmit").click(function () {
+            var fd = new FormData();
+            fd.append("FirstName", $("#FirstName").val());
+            fd.append("LastName", $("#LastName").val());
             $.ajax({
                 url: "/User/Test",
-                type: "POST",
-                dataType: 'json',
-                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-                data: valdata
+                data: fd,
+                cache: false,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                success: function (response) {
+                    alert(response);
+                }
             });
         });
+    });
 </script>
